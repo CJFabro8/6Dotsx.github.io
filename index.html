@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Modern Tabs with Rainbow Background</title>
+  <style>
+    /* Styling for tabs */
+    .tab-container {
+      display: flex;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .tab {
+      padding: 10px;
+      background-color: #f1f1f1;
+      cursor: pointer;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .tab.active {
+      background-color: #ccc;
+    }
+
+    /* Styling for tab content */
+    .tab-content {
+      display: none;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-top: none;
+      border-radius: 0 10px 10px 10px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Rainbow background */
+    body {
+      background: linear-gradient(45deg, #FF4E50, #FC913A, #F9D423, #EDE574, #9BC53D, #5DAAE0, #FFA34F);
+      background-size: 400% 400%;
+      animation: rainbowBackground 10s ease infinite;
+    }
+
+    @keyframes rainbowBackground {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+  <div class="tab-container">
+    <div class="tab active" onclick="showTab(1)">Tab 1</div>
+    <div class="tab" onclick="showTab(2)">Tab 2</div>
+    <div class="tab" onclick="showTab(3)">Tab 3</div>
+  </div>
+
+  <div class="tab-content active" id="tab1">
+    <h2>Tab 1 Content</h2>
+    <p>This is the content of Tab 1.</p>
+  </div>
+
+  <div class="tab-content" id="tab2">
+    <h2>Tab 2 Content</h2>
+    <p>This is the content of Tab 2.</p>
+  </div>
+
+  <div class="tab-content" id="tab3">
+    <h2>Tab 3 Content</h2>
+    <p>This is the content of Tab 3.</p>
+  </div>
+
+  <script>
+    function showTab(tabNumber) {
+      // Hide all tab contents
+      var tabContents = document.getElementsByClassName("tab-content");
+      for (var i = 0; i < tabContents.length; i++) {
+        tabContents[i].classList.remove("active");
+      }
+
+      // Remove active class from all tabs
+      var tabs = document.getElementsByClassName("tab");
+      for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+      }
+
+      // Show the selected tab content and mark the tab as active
+      document.getElementById("tab" + tabNumber).classList.add("active");
+      document.getElementsByClassName("tab")[tabNumber - 1].classList.add("active");
+    }
+  </script>
+</body>
+</html>
